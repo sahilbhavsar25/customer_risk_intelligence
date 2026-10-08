@@ -1,0 +1,9 @@
+metric,value,unit,passed,cases
+Retrieval accuracy,100.0,%,13.0,13
+Answer correctness,94.12,%,16.0,17
+Citation correctness,100.0,%,13.0,13
+Grounding,94.12,%,16.0,17
+Hallucination rate (unavailable cases),0.0,%,0.0,3
+Average latency,1427.6,ms,,17
+Median latency,1517.0,ms,,17
+P95 latency,1896.4,ms,,17

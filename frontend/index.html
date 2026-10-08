@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Risk Intelligence</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h1>Customer Risk Intelligence</h1>
+  <span id="health" class="pill">checking…</span>
+</header>
+
+<main>
+
+  <form id="search-form" class="card search">
+    <label for="customer-id">Customer ID</label>
+    <input id="customer-id" placeholder="CUST_00004" autocomplete="off" required>
+    <button type="submit">Search</button>
+  </form>
+
+  <p id="search-error" class="error" hidden></p>
+
+  <section id="customer-view" hidden>
+
+    <div class="grid">
+
+      <div class="card">
+        <h2>Customer</h2>
+        <dl id="profile"></dl>
+      </div>
+
+      <div class="card">
+        <h2>Risk (next 30 days)</h2>
+        <div id="risk"></div>
+      </div>
+
+    </div>
+
+    <div class="card">
+      <h2>Ask about this customer</h2>
+      <form id="ask-form" class="ask">
+        <input id="question" maxlength="500"
+               placeholder="Ask a question about this customer…" required>
+        <button type="submit">Ask</button>
+      </form>
+      <div id="answer"></div>
+    </div>
+
+    <div class="card">
+      <h2>Payment status</h2>
+      <div id="payment-summary" class="chips"></div>
+      <h3>Recent transactions</h3>
+      <div class="table-wrap"><table id="transactions"></table></div>
+    </div>
+
+    <div class="card">
+      <h2>Support interactions &amp; complaints</h2>
+      <div class="table-wrap"><table id="interactions"></table></div>
+    </div>
+
+    <div class="card">
+      <h2>Documents</h2>
+      <div id="documents"></div>
+    </div>
+
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

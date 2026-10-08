@@ -1,0 +1,776 @@
+{
+    "summary": [
+        {
+            "metric": "Retrieval accuracy",
+            "value": 100.0,
+            "unit": "%",
+            "passed": 13.0,
+            "cases": 13
+        },
+        {
+            "metric": "Answer correctness",
+            "value": 94.12,
+            "unit": "%",
+            "passed": 16.0,
+            "cases": 17
+        },
+        {
+            "metric": "Citation correctness",
+            "value": 100.0,
+            "unit": "%",
+            "passed": 13.0,
+            "cases": 13
+        },
+        {
+            "metric": "Grounding",
+            "value": 94.12,
+            "unit": "%",
+            "passed": 16.0,
+            "cases": 17
+        },
+        {
+            "metric": "Hallucination rate (unavailable cases)",
+            "value": 0.0,
+            "unit": "%",
+            "passed": 0.0,
+            "cases": 3
+        },
+        {
+            "metric": "Average latency",
+            "value": 1427.6,
+            "unit": "ms",
+            "passed": NaN,
+            "cases": 17
+        },
+        {
+            "metric": "Median latency",
+            "value": 1517.0,
+            "unit": "ms",
+            "passed": NaN,
+            "cases": 17
+        },
+        {
+            "metric": "P95 latency",
+            "value": 1896.4,
+            "unit": "ms",
+            "passed": NaN,
+            "cases": 17
+        }
+    ],
+    "cases": [
+        {
+            "eval_id": "RAG_001",
+            "customer_id": "CUST_00091",
+            "question": "What payment issue was reported for this customer?",
+            "question_type": "document",
+            "intentionally_unavailable": false,
+            "expected_answer": "Payment discussion with Eric Erickson. The customer requested additional time to resolve an outstanding payment and asked for the payment status to be reviewed.",
+            "actual_answer": "The payment issue reported for this customer was a request for additional time to resolve an outstanding payment and a request to review the payment status.",
+            "status": "answered",
+            "expected_sources": [
+                "DOC_000023"
+            ],
+            "retrieved_document_ids": [
+                "DOC_000023"
+            ],
+            "actual_sources": [
+                {
+                    "document_id": "DOC_000023",
+                    "document_type": "PAYMENT_ISSUE",
+                    "document_date": "2025-08-13",
+                    "source": "CRM"
+                }
+            ],
+            "assistant_grounded_flag": true,
+            "retrieval_correct": true,
+            "answer_correct": true,
+            "citation_correct": true,
+            "grounding_correct": true,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "phrase:additional time": true,
+                        "phrase:outstanding payment": true,
+                        "phrase:payment status reviewed": true
+                    },
+                    "fact_coverage": 1.0,
+                    "contradiction": false
+                },
+                "citation": {
+                    "belongs_to_customer": true,
+                    "expected_source_cited": true,
+                    "citation_supports_answer": true
+                },
+                "grounding": {
+                    "evidence_support_ratio": 1.0,
+                    "unsupported_numbers": []
+                }
+            },
+            "latency_ms": 2520.07,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_002",
+            "customer_id": "CUST_00961",
+            "question": "What complaint did this customer raise?",
+            "question_type": "document",
+            "intentionally_unavailable": false,
+            "expected_answer": "Customer Maria Reeves submitted a complaint about delayed service response and requested additional follow-up from the support team.",
+            "actual_answer": "Maria Reeves raised a complaint about delayed service response and requested additional follow-up from the support team.",
+            "status": "answered",
+            "expected_sources": [
+                "DOC_000076"
+            ],
+            "retrieved_document_ids": [
+                "DOC_000076"
+            ],
+            "actual_sources": [
+                {
+                    "document_id": "DOC_000076",
+                    "document_type": "COMPLAINT",
+                    "document_date": "2025-12-29",
+                    "source": "EMAIL"
+                }
+            ],
+            "assistant_grounded_flag": true,
+            "retrieval_correct": true,
+            "answer_correct": true,
+            "citation_correct": true,
+            "grounding_correct": true,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "phrase:delayed service response": true,
+                        "phrase:follow-up": true
+                    },
+                    "fact_coverage": 1.0,
+                    "contradiction": false
+                },
+                "citation": {
+                    "belongs_to_customer": true,
+                    "expected_source_cited": true,
+                    "citation_supports_answer": true
+                },
+                "grounding": {
+                    "evidence_support_ratio": 0.917,
+                    "unsupported_numbers": []
+                }
+            },
+            "latency_ms": 1680.65,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_003",
+            "customer_id": "CUST_00903",
+            "question": "What support issue did this customer report?",
+            "question_type": "document",
+            "intentionally_unavailable": false,
+            "expected_answer": "Support team assisted Lucas Cox with an account-related issue. The case was reviewed and the customer was provided with the required guidance.",
+            "actual_answer": "The customer reported an account-related issue, which was assisted by the support team.",
+            "status": "answered",
+            "expected_sources": [
+                "DOC_000220"
+            ],
+            "retrieved_document_ids": [
+                "DOC_000220"
+            ],
+            "actual_sources": [
+                {
+                    "document_id": "DOC_000220",
+                    "document_type": "SUPPORT_NOTE",
+                    "document_date": "2025-08-08",
+                    "source": "SUPPORT_SYSTEM"
+                }
+            ],
+            "assistant_grounded_flag": true,
+            "retrieval_correct": true,
+            "answer_correct": false,
+            "citation_correct": true,
+            "grounding_correct": true,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "phrase:account-related issue": true,
+                        "phrase:guidance": false
+                    },
+                    "fact_coverage": 0.5,
+                    "contradiction": false
+                },
+                "citation": {
+                    "belongs_to_customer": true,
+                    "expected_source_cited": true,
+                    "citation_supports_answer": true
+                },
+                "grounding": {
+                    "evidence_support_ratio": 1.0,
+                    "unsupported_numbers": []
+                }
+            },
+            "latency_ms": 1543.47,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_004",
+            "customer_id": "CUST_00786",
+            "question": "What renewal discussion was recorded for this customer?",
+            "question_type": "document",
+            "intentionally_unavailable": false,
+            "expected_answer": "Gary Brown discussed the upcoming renewal and requested clarification regarding contract terms and service continuity.",
+            "actual_answer": "Gary Brown discussed the upcoming renewal and requested clarification regarding contract terms and service continuity.",
+            "status": "answered",
+            "expected_sources": [
+                "DOC_000160"
+            ],
+            "retrieved_document_ids": [
+                "DOC_000160"
+            ],
+            "actual_sources": [
+                {
+                    "document_id": "DOC_000160",
+                    "document_type": "RENEWAL_DISCUSSION",
+                    "document_date": "2025-12-24",
+                    "source": "EMAIL"
+                }
+            ],
+            "assistant_grounded_flag": true,
+            "retrieval_correct": true,
+            "answer_correct": true,
+            "citation_correct": true,
+            "grounding_correct": true,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "phrase:upcoming renewal": true,
+                        "phrase:contract terms": true,
+                        "phrase:service continuity": true
+                    },
+                    "fact_coverage": 1.0,
+                    "contradiction": false
+                },
+                "citation": {
+                    "belongs_to_customer": true,
+                    "expected_source_cited": true,
+                    "citation_supports_answer": true
+                },
+                "grounding": {
+                    "evidence_support_ratio": 1.0,
+                    "unsupported_numbers": []
+                }
+            },
+            "latency_ms": 1537.53,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_005",
+            "customer_id": "CUST_00739",
+            "question": "What escalation was recorded for this customer?",
+            "question_type": "document",
+            "intentionally_unavailable": false,
+            "expected_answer": "Steven Fernandez requested escalation after the initial support interaction did not fully resolve the reported issue.",
+            "actual_answer": "Steven Fernandez requested escalation after the initial support interaction did not fully resolve the reported issue.",
+            "status": "answered",
+            "expected_sources": [
+                "DOC_000124"
+            ],
+            "retrieved_document_ids": [
+                "DOC_000124"
+            ],
+            "actual_sources": [
+                {
+                    "document_id": "DOC_000124",
+                    "document_type": "ESCALATION",
+                    "document_date": "2025-11-26",
+                    "source": "SUPPORT_SYSTEM"
+                }
+            ],
+            "assistant_grounded_flag": true,
+            "retrieval_correct": true,
+            "answer_correct": true,
+            "citation_correct": true,
+            "grounding_correct": true,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "phrase:escalation": true,
+                        "phrase:initial support interaction": true,
+                        "phrase:not fully resolve": true
+                    },
+                    "fact_coverage": 1.0,
+                    "contradiction": false
+                },
+                "citation": {
+                    "belongs_to_customer": true,
+                    "expected_source_cited": true,
+                    "citation_supports_answer": true
+                },
+                "grounding": {
+                    "evidence_support_ratio": 1.0,
+                    "unsupported_numbers": []
+                }
+            },
+            "latency_ms": 1555.71,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_006",
+            "customer_id": "CUST_00307",
+            "question": "What account-related note was recorded for this customer?",
+            "question_type": "document",
+            "intentionally_unavailable": false,
+            "expected_answer": "Account note for Melissa Jordan. Customer profile and recent account activity were reviewed by the account management team.",
+            "actual_answer": "Account note for Melissa Jordan. Customer profile and recent account activity were reviewed by the account management team.",
+            "status": "answered",
+            "expected_sources": [
+                "DOC_000185"
+            ],
+            "retrieved_document_ids": [
+                "DOC_000185"
+            ],
+            "actual_sources": [
+                {
+                    "document_id": "DOC_000185",
+                    "document_type": "ACCOUNT_NOTE",
+                    "document_date": "2025-12-13",
+                    "source": "CRM"
+                }
+            ],
+            "assistant_grounded_flag": true,
+            "retrieval_correct": true,
+            "answer_correct": true,
+            "citation_correct": true,
+            "grounding_correct": true,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "phrase:customer profile": true,
+                        "phrase:account activity": true,
+                        "phrase:account management team": true
+                    },
+                    "fact_coverage": 1.0,
+                    "contradiction": false
+                },
+                "citation": {
+                    "belongs_to_customer": true,
+                    "expected_source_cited": true,
+                    "citation_supports_answer": true
+                },
+                "grounding": {
+                    "evidence_support_ratio": 1.0,
+                    "unsupported_numbers": []
+                }
+            },
+            "latency_ms": 1397.7,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_007",
+            "customer_id": "CUST_00425",
+            "question": "What customer preference was recorded?",
+            "question_type": "document",
+            "intentionally_unavailable": false,
+            "expected_answer": "Communication preference recorded for Jennifer Garcia. The customer prefers receiving support updates through the online portal.",
+            "actual_answer": "The customer prefers receiving support updates through the online portal.",
+            "status": "answered",
+            "expected_sources": [
+                "DOC_000223"
+            ],
+            "retrieved_document_ids": [
+                "DOC_000223"
+            ],
+            "actual_sources": [
+                {
+                    "document_id": "DOC_000223",
+                    "document_type": "CUSTOMER_PREFERENCE",
+                    "document_date": "2025-11-12",
+                    "source": "SUPPORT_SYSTEM"
+                }
+            ],
+            "assistant_grounded_flag": true,
+            "retrieval_correct": true,
+            "answer_correct": true,
+            "citation_correct": true,
+            "grounding_correct": true,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "phrase:online portal": true,
+                        "phrase:support updates": true
+                    },
+                    "fact_coverage": 1.0,
+                    "contradiction": false
+                },
+                "citation": {
+                    "belongs_to_customer": true,
+                    "expected_source_cited": true,
+                    "citation_supports_answer": true
+                },
+                "grounding": {
+                    "evidence_support_ratio": 1.0,
+                    "unsupported_numbers": []
+                }
+            },
+            "latency_ms": 1597.06,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_008",
+            "customer_id": "CUST_00543",
+            "question": "What payment problems has this customer experienced?",
+            "question_type": "document",
+            "intentionally_unavailable": false,
+            "expected_answer": "Mercedes Jones contacted the finance team regarding an overdue invoice. The customer requested details about the due amount and payment timeline.",
+            "actual_answer": "Mercedes Jones has experienced payment problems including 2 overdue transactions and 4 failed transactions. Additionally, she contacted the finance team regarding an overdue invoice, requesting details about the due amount and payment timeline.",
+            "status": "answered",
+            "expected_sources": [
+                "DOC_000049"
+            ],
+            "retrieved_document_ids": [
+                "DOC_000049"
+            ],
+            "actual_sources": [
+                {
+                    "document_id": "DOC_000049",
+                    "document_type": "PAYMENT_ISSUE",
+                    "document_date": "2025-12-17",
+                    "source": "SUPPORT_SYSTEM"
+                }
+            ],
+            "assistant_grounded_flag": true,
+            "retrieval_correct": true,
+            "answer_correct": true,
+            "citation_correct": true,
+            "grounding_correct": true,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "phrase:overdue invoice": true,
+                        "phrase:due amount": true,
+                        "phrase:payment timeline": true
+                    },
+                    "fact_coverage": 1.0,
+                    "contradiction": false
+                },
+                "citation": {
+                    "belongs_to_customer": true,
+                    "expected_source_cited": true,
+                    "citation_supports_answer": true
+                },
+                "grounding": {
+                    "evidence_support_ratio": 0.85,
+                    "unsupported_numbers": []
+                }
+            },
+            "latency_ms": 1740.54,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_009",
+            "customer_id": "CUST_00005",
+            "question": "Has this customer complained about anything?",
+            "question_type": "document",
+            "intentionally_unavailable": false,
+            "expected_answer": "Customer Lindsey Roman submitted a complaint about delayed service response and requested additional follow-up from the support team.",
+            "actual_answer": "Yes, this customer has complained about delayed service response and requested additional follow-up from the support team.",
+            "status": "answered",
+            "expected_sources": [
+                "DOC_000207"
+            ],
+            "retrieved_document_ids": [
+                "DOC_000207"
+            ],
+            "actual_sources": [
+                {
+                    "document_id": "DOC_000207",
+                    "document_type": "COMPLAINT",
+                    "document_date": "2025-10-05",
+                    "source": "ACCOUNT_MANAGEMENT"
+                }
+            ],
+            "assistant_grounded_flag": true,
+            "retrieval_correct": true,
+            "answer_correct": true,
+            "citation_correct": true,
+            "grounding_correct": true,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "phrase:delayed service response": true,
+                        "phrase:follow-up": true
+                    },
+                    "fact_coverage": 1.0,
+                    "contradiction": false
+                },
+                "citation": {
+                    "belongs_to_customer": true,
+                    "expected_source_cited": true,
+                    "citation_supports_answer": true
+                },
+                "grounding": {
+                    "evidence_support_ratio": 0.9,
+                    "unsupported_numbers": []
+                }
+            },
+            "latency_ms": 1695.81,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_010",
+            "customer_id": "CUST_00754",
+            "question": "What did the support team record for this customer?",
+            "question_type": "document",
+            "intentionally_unavailable": false,
+            "expected_answer": "Support interaction with Meghan Sellers. The customer requested assistance with a technical issue. Support reviewed the case and provided troubleshooting guidance.",
+            "actual_answer": "The support team recorded that Meghan Sellers requested assistance with a technical issue. Support reviewed the case and provided troubleshooting guidance.",
+            "status": "answered",
+            "expected_sources": [
+                "DOC_000083"
+            ],
+            "retrieved_document_ids": [
+                "DOC_000083"
+            ],
+            "actual_sources": [
+                {
+                    "document_id": "DOC_000083",
+                    "document_type": "SUPPORT_NOTE",
+                    "document_date": "2025-12-22",
+                    "source": "SUPPORT_SYSTEM"
+                }
+            ],
+            "assistant_grounded_flag": true,
+            "retrieval_correct": true,
+            "answer_correct": true,
+            "citation_correct": true,
+            "grounding_correct": true,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "phrase:technical issue": true,
+                        "phrase:troubleshooting guidance": true
+                    },
+                    "fact_coverage": 1.0,
+                    "contradiction": false
+                },
+                "citation": {
+                    "belongs_to_customer": true,
+                    "expected_source_cited": true,
+                    "citation_supports_answer": true
+                },
+                "grounding": {
+                    "evidence_support_ratio": 0.923,
+                    "unsupported_numbers": []
+                }
+            },
+            "latency_ms": 1492.35,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_011",
+            "customer_id": "CUST_00103",
+            "question": "How many failed transactions and how many overdue transactions does this customer have in total?",
+            "question_type": "structured_data",
+            "intentionally_unavailable": false,
+            "expected_answer": "failed transactions = 1, overdue transactions = 5",
+            "actual_answer": "This customer has a total of 1 failed transaction and 5 overdue transactions.",
+            "status": "answered",
+            "expected_sources": [],
+            "retrieved_document_ids": [],
+            "actual_sources": [],
+            "assistant_grounded_flag": true,
+            "retrieval_correct": null,
+            "answer_correct": true,
+            "citation_correct": null,
+            "grounding_correct": true,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "count:failed": true,
+                        "count:overdue": true
+                    }
+                },
+                "citation": {},
+                "grounding": {
+                    "evidence_support_ratio": 1.0,
+                    "unsupported_numbers": []
+                }
+            },
+            "latency_ms": 926.64,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_012",
+            "customer_id": "CUST_00524",
+            "question": "Which segment and industry does this customer belong to, and what is the account status?",
+            "question_type": "structured_data",
+            "intentionally_unavailable": false,
+            "expected_answer": "segment = Individual, industry = Logistics, account status = SUSPENDED",
+            "actual_answer": "The customer belongs to the Individual segment and the Logistics industry. The account status is SUSPENDED.",
+            "status": "answered",
+            "expected_sources": [],
+            "retrieved_document_ids": [],
+            "actual_sources": [],
+            "assistant_grounded_flag": true,
+            "retrieval_correct": null,
+            "answer_correct": true,
+            "citation_correct": null,
+            "grounding_correct": true,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "text:Individual": true,
+                        "text:Logistics": true,
+                        "text:SUSPENDED": true
+                    }
+                },
+                "citation": {},
+                "grounding": {
+                    "evidence_support_ratio": 0.875,
+                    "unsupported_numbers": []
+                }
+            },
+            "latency_ms": 1079.73,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_013",
+            "customer_id": "CUST_00324",
+            "question": "What is this customer's current ML risk level and risk probability?",
+            "question_type": "structured_data",
+            "intentionally_unavailable": false,
+            "expected_answer": "risk level = MEDIUM, risk probability = 0.3501",
+            "actual_answer": "The customer's current ML risk level is MEDIUM and the risk probability is 0.3501.",
+            "status": "answered",
+            "expected_sources": [],
+            "retrieved_document_ids": [
+                "DOC_000102"
+            ],
+            "actual_sources": [],
+            "assistant_grounded_flag": true,
+            "retrieval_correct": null,
+            "answer_correct": true,
+            "citation_correct": null,
+            "grounding_correct": true,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "text:MEDIUM": true,
+                        "probability:0.3501": true
+                    }
+                },
+                "citation": {},
+                "grounding": {
+                    "evidence_support_ratio": 1.0,
+                    "unsupported_numbers": []
+                }
+            },
+            "latency_ms": 1406.15,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_014",
+            "customer_id": "CUST_00764",
+            "question": "What is this customer's current ML risk level and risk probability?",
+            "question_type": "structured_data",
+            "intentionally_unavailable": false,
+            "expected_answer": "ML risk prediction is unavailable because this customer does not have sufficient historical data for the current prediction framework.",
+            "actual_answer": "The ML risk prediction is unavailable because this customer does not have sufficient historical data for the current prediction framework.",
+            "status": "answered",
+            "expected_sources": [],
+            "retrieved_document_ids": [],
+            "actual_sources": [],
+            "assistant_grounded_flag": false,
+            "retrieval_correct": null,
+            "answer_correct": true,
+            "citation_correct": null,
+            "grounding_correct": false,
+            "details": {
+                "answer": {
+                    "facts": {
+                        "phrase:unavailable": true,
+                        "absent_pattern:\\b0\\.\\d+|\\d+(\\.\\d+)?\\s?%|\\b(high|medium|low)\\s+risk\\b": true
+                    }
+                },
+                "citation": {},
+                "grounding": {
+                    "reason": "assistant_marked_not_grounded"
+                }
+            },
+            "latency_ms": 1517.02,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_015",
+            "customer_id": "CUST_00517",
+            "question": "What customer preference was recorded?",
+            "question_type": "unavailable",
+            "intentionally_unavailable": true,
+            "expected_answer": "I could not find sufficient information in the available customer data.",
+            "actual_answer": "I could not find sufficient information in the available customer data.",
+            "status": "insufficient_information",
+            "expected_sources": [],
+            "retrieved_document_ids": [],
+            "actual_sources": [],
+            "assistant_grounded_flag": false,
+            "retrieval_correct": true,
+            "answer_correct": true,
+            "citation_correct": true,
+            "grounding_correct": true,
+            "details": {
+                "answer": {},
+                "citation": {},
+                "grounding": {}
+            },
+            "latency_ms": 1291.37,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_016",
+            "customer_id": "CUST_00491",
+            "question": "What renewal discussion was recorded for this customer?",
+            "question_type": "unavailable",
+            "intentionally_unavailable": true,
+            "expected_answer": "I could not find sufficient information in the available customer data.",
+            "actual_answer": "I could not find sufficient information in the available customer data.",
+            "status": "insufficient_information",
+            "expected_sources": [],
+            "retrieved_document_ids": [],
+            "actual_sources": [],
+            "assistant_grounded_flag": false,
+            "retrieval_correct": true,
+            "answer_correct": true,
+            "citation_correct": true,
+            "grounding_correct": true,
+            "details": {
+                "answer": {},
+                "citation": {},
+                "grounding": {}
+            },
+            "latency_ms": 1286.46,
+            "error": null
+        },
+        {
+            "eval_id": "RAG_017",
+            "customer_id": "CUST_00509",
+            "question": "What legal dispute did this customer report?",
+            "question_type": "unavailable",
+            "intentionally_unavailable": true,
+            "expected_answer": "I could not find sufficient information in the available customer data.",
+            "actual_answer": "I could not find sufficient information in the available customer data.",
+            "status": "insufficient_information",
+            "expected_sources": [],
+            "retrieved_document_ids": [],
+            "actual_sources": [],
+            "assistant_grounded_flag": false,
+            "retrieval_correct": true,
+            "answer_correct": true,
+            "citation_correct": true,
+            "grounding_correct": true,
+            "details": {
+                "answer": {},
+                "citation": {},
+                "grounding": {}
+            },
+            "latency_ms": 0.09,
+            "error": null
+        }
+    ]
+}

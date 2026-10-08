@@ -1,0 +1,95 @@
+# Usage
+#
+#   cp .env.example .env        # fill in DATABASE_PASSWORD, OPENAI_API_KEY
+#
+#   # first time only (or to regenerate everything): build the
+#   # data + model artifacts into ./data and ./models
+#   docker compose --profile pipeline run --rm pipeline
+#
+#   docker compose up --build
+#
+# The `init` job loads processed data into PostgreSQL and syncs
+# document embeddings into Qdrant (only new/changed documents are
+# embedded), then the API starts.
+
+x-app-env: &app-env
+  env_file: .env
+  environment:
+    DATABASE_HOST: postgres
+    DATABASE_PORT: "5432"
+    QDRANT_URL: http://qdrant:6333
+
+services:
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME:-customer_risk_db}
+      POSTGRES_USER: ${DATABASE_USER:-customer_risk_user}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?Set DATABASE_PASSWORD in .env}
+    ports:
+      - "${POSTGRES_HOST_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "${QDRANT_HOST_PORT:-6333}:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    healthcheck:
+      # The image has no curl/wget; bash's /dev/tcp is enough.
+      test: ["CMD-SHELL", "bash -c ':> /dev/tcp/127.0.0.1/6333' || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  # One-shot: data generation -> cleaning -> features -> training.
+  # Only runs when asked for (profile "pipeline").
+  pipeline:
+    build: .
+    <<: *app-env
+    profiles: ["pipeline"]
+    command: ["make", "pipeline"]
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+
+  # One-shot: PostgreSQL load + Qdrant document sync.
+  init:
+    build: .
+    <<: *app-env
+    command: >
+      sh -c "python -m src.database.load_processed &&
+             python -m src.rag.ingest_documents"
+    volumes:
+      - ./data:/app/data:ro
+      - ./models:/app/models:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+
+  api:
+    build: .
+    <<: *app-env
+    ports:
+      - "${API_PORT:-8000}:8000"
+    volumes:
+      - ./data:/app/data:ro
+      - ./models:/app/models:ro
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  qdrant_data:
